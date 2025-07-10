@@ -62,12 +62,16 @@ with st.sidebar:
 
     with st.expander("ℹ️ About SiPHY"):
         st.markdown("""
-**SiPHY Protocol Assistant** helps SoC designers and verification engineers decode Ethernet clauses.
-
-- Modes: Strict Clause Lookup, Smart Designer, Expert Context  
-- Powered by FAISS + OpenAI + custom clause metadata  
-- Created by Siemens Design Team  
-
+****SiPHY** is a multi-mode protocol assistant trained on multiple IP Protocols (Ethernet, UCIE, PCIe...) specifications. It is powered by FAISS + OpenAI + custom clause metadata  
+Use it to:
+Today
+- Clarify protocol behavior  
+- Compare design tradeoffs (e.g., PAM4 vs NRZ)  
+- Compare encoding schemes (e.g., 64b/66b vs 8b/10b)
+Future
+- Simulate edge cases or debug scenarios  
+- Debug protocol interoperability  
+- Validate clause coverage in chiplet designs  
 ---
 
 ### Potential Use Cases
