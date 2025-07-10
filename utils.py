@@ -40,7 +40,7 @@ def get_openai_answer(query, context, mode, sources=None):
     ]
 
     response = client.chat.completions.create(
-        model="gpt-4-1106-preview",
+        model="gpt-4.1",
         messages=messages,
         temperature=0.2,
     )
