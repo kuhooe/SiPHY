@@ -3,9 +3,6 @@
 import streamlit as st
 import os
 
-st.write("🔍 [DEBUG] Secret from st.secrets:", st.secrets.get("OPENAI_API_KEY", "❌ NOT FOUND"))
-st.write("🔍 [DEBUG] Secret from os.environ:", os.environ.get("OPENAI_API_KEY", "❌ NOT FOUND"))
-
 from fpdf import FPDF
 from datetime import datetime
 import streamlit.components.v1 as components
