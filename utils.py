@@ -40,9 +40,11 @@ def get_openai_answer(query, context, mode, sources=None):
     ]
 
     response = client.chat.completions.create(
-        model="gpt-4",
+        model="gpt-4-0125-preview",  # ✅ This is GPT-4.1
         messages=messages,
         temperature=0.2,
+)
+
     )
 
     content = response.choices[0].message.content.strip()
