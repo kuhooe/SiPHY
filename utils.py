@@ -9,9 +9,9 @@ from fpdf import FPDF
 import faiss
 import numpy as np
 from openai import OpenAI
+import streamlit as st  # already imported
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
-load_dotenv()
-client = OpenAI()
 
 # 💬 OpenAI Answer Generator
 def get_openai_answer(query, context, mode, sources=None):
