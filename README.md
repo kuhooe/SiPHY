@@ -2,7 +2,7 @@
 
 SiPHY is a multi-mode protocol assistant for Ethernet (and other protocols like PCIe, UCIe). It’s built to help silicon designers, system integrators, and verification engineers explore tradeoffs, understand clause behavior, and debug protocol issues.
 
-## ✅ Supported Modes
+## Supported Modes
 
 - **Strict Clause Mode**  
   Exact clause-level summaries. No added commentary.
@@ -15,7 +15,7 @@ SiPHY is a multi-mode protocol assistant for Ethernet (and other protocols like 
 
 ---
 
-## 💡 Example Use Cases
+## Example Use Cases
 
 - “What happens during lane deskew in 25GBASE-R?”
 - “Compare 64b/66b to 8b/10b encoding in 10G Ethernet.”
@@ -25,7 +25,7 @@ SiPHY is a multi-mode protocol assistant for Ethernet (and other protocols like 
 
 ---
 
-## 🚀 Setup Instructions
+## Setup Instructions
 
 1. **Clone this repo** or extract the `.zip` archive.
 2. **Install dependencies** (Python 3.10+ required):
@@ -48,7 +48,7 @@ run_siphy.bat
 
 ---
 
-## 🧱 Folder Structure
+## Folder Structure
 
 - `streamlit_app.py` – Launches the UI and coordinates chat logic
 - `utils.py` – Clause parser, PDF logic, OpenAI interaction
@@ -62,5 +62,5 @@ run_siphy.bat
 
 ---
 
-© Siemens Internal Demo Tool | Created by Sam George's team
+© Siemens Internal Demo Tool | Created by Siemens EDA CLS team
 
