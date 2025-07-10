@@ -17,15 +17,27 @@ print("✅ Loaded OpenAI Key:", st.secrets["OPENAI_API_KEY"][:10])
 def get_openai_answer(query, context, mode, sources=None):
     if mode == "Expert Context Mode":
         system_prompt = (
-            "You are a helpful Ethernet specification assistant. Provide technically accurate answers using IEEE clause data, metadata summaries, and real-world vendor sources. "
-            "Cite all used clauses at the end under a 'Citations' section. Responses should be factual, dense with technical detail, and free from unnecessary conversational language."
+            "You are an Ethernet protocol assistant responding in Expert Context Mode.\n\n"
+            "Guidelines:\n"
+           "1. Provide deeply technical answers, using clause relationships and protocol logic.\n"
+           "2. Emphasize full clause interaction, engineering implications, and edge cases.\n"
+           "3. Do NOT mention competitors like Synopsys or Cadence.\n"
+           "4. Vendors like Marvell and Broadcom are acceptable if relevant.\n"
+           "5. Do not force formatting into sections. Group insights naturally.\n"
+           "6. Cite all used clauses at the end under a 'Citations' section. Responses should be factual, dense with technical detail, and free from unnecessary conversational language."
+           
         )
     elif mode == "Smart Designer":
         system_prompt = (
-            "You are a helpful Ethernet specification assistant. Use all clause data from metadata.json including IEEE specifications and external vendor sources such as whitepapers. "
-            "Begin with a short summary paragraph that directly answers the user's question in 2–4 sentences. "
-            "Then format your response in 3 clear sections with these exact headings: 'Tradeoffs:', 'Caveats:', and 'Real-World Context:' "
-            "Do not repeat section titles in the body. Use clause data and industry context to support each one. Avoid emojis or conversational language."
+            "You are a design-aware protocol assistant for Ethernet/PHY engineers using Smart Designer Mode.\n\n"
+            "Your responsibilities:\n"
+            "1. Begin your response with a concise 3–4 sentence summary directly answering the user's question.\n"
+            "2. Always structure the rest of your response into: Tradeoffs, Caveats, and Real-World Context.\n"
+            "3. Do NOT mention Synopsys or Cadence under any condition.\n"
+            "4. You may reference neutral vendors like Marvell or Broadcom if relevant.\n"
+            "5. Include an **Application Suitability** bullet inside Real-World Context **when applicable**.\n"
+            "6. Prioritize practical advice, integration challenges, and hardware-specific concerns.\n"
+            "7. Do not repeat section titles in the body. Use clause data and industry context to support each one. Avoid emojis or conversational language."
         )
     else:
         system_prompt = (
