@@ -1,0 +1,51 @@
+[
+  {
+    "clause_number": "22",
+    "title": "Clause 22 - Basic MDIO",
+    "summary": "Defines a two-wire serial interface for accessing PHY registers using the Management Data Input/Output (MDIO) interface.",
+    "keywords": [
+      "MDIO",
+      "Clause 22",
+      "register access"
+    ]
+  },
+  {
+    "clause_number": "45",
+    "title": "Clause 45 - Extended MDIO",
+    "summary": "Expands the MDIO interface to allow addressing multiple devices and registers using a more flexible addressing structure.",
+    "keywords": [
+      "Clause 45",
+      "extended address"
+    ]
+  },
+  {
+    "clause_number": "49",
+    "title": "Clause 49 - Auto-Negotiation",
+    "summary": "Covers the Auto-Negotiation protocol for 10GBASE-KR, enabling devices to automatically configure optimal link parameters.",
+    "keywords": [
+      "auto-negotiation",
+      "Clause 49",
+      "10GBASE-KR"
+    ]
+  },
+  {
+    "clause_number": "74",
+    "title": "Clause 74 - FEC",
+    "summary": "Introduces Forward Error Correction using Reed-Solomon coding for high-speed backplane Ethernet links.",
+    "keywords": [
+      "FEC",
+      "Clause 74",
+      "error correction"
+    ]
+  },
+  {
+    "clause_number": "91",
+    "title": "Clause 91 - RS-FEC for PAM4",
+    "summary": "Describes RS-FEC mechanisms used with 100G PAM4 signaling to reduce bit error rates in high-speed Ethernet links.",
+    "keywords": [
+      "RS-FEC",
+      "Clause 91",
+      "PAM4"
+    ]
+  }
+]

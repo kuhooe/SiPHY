@@ -1,0 +1,102 @@
+| Mode                         | Audience                     | Style                                                                 | Sectioned?                 | Limits?                                   |
+| ---------------------------- | ---------------------------- | --------------------------------------------------------------------- | -------------------------- | ----------------------------------------- |
+| **Strict Clause Lookup**     | Standards engineers, lawyers | Verbatim IEEE clause summaries only                                   | ❌                          | ✅ Hard limits (no tradeoffs, no opinions) |
+| **Smart Designer Assistant** | PHY designers, integrators   | Balanced explanations + tradeoffs                                     | ✅                          | ⚠️ Simplifies detail for clarity          |
+| **Expert Context Mode** (🆕) | Advanced users, architects   | Deep technical analysis, real-world context, clause interdependencies | ❌ or intelligently grouped | ❌ No filtering, preserves full depth      |
+
+🔍 Additional Notes
+Feedback buttons were discussed, and the clause feedback logic exists in clause_feedback.py, but no 👍/👎 UI or capture logic exists in streamlit_app.py. This will require front-end work using st.button() per message.
+
+External sources in metadata are only shown as plain text when present — not rendered as hyperlinks. If you'd like, I can add logic to auto-convert http/https strings to <a> tags.
+
+Mode-aware rendering is functioning:
+
+Smart Designer: full onion + source/caveats/tradeoffs
+
+Strict Clause Lookup: only clause summaries
+
+Expert Context: grouped clause summaries without sectioning
+
+
+Smart Designer Logic
+“Answers must include clause-level reasoning and citation hooks.
+
+🟢 What It Does (In Plain English)
+A concise 1–2 sentence explanation of the clause’s purpose and effect.
+
+
+⚖️ Tradeoffs & Design Caveats
+When/why this feature may not be ideal:
+
+Latency vs. distance
+
+Power/complexity tradeoffs
+
+💡 Best Practices & Recommendations
+Design advice based on use case:
+
+
+
+Example Smart Designer mode
+How does RS-FEC improve link reliability in 25GBASE-R?
+
+Summary: RS-FEC improves link reliability by correcting symbol errors, enhancing error resilience, and enabling reliable transmission, which are crucial for high speed ethernet links like 25GBASE-R.
+🔧 Design Tradeoffs & Caveats
+Latency vs Reliability:
+RS-FEC introduces processing latency, especially relevant for time-sensitive applications. Designers should validate that link budget can absorb this delay without compromising timing closure.
+
+Power vs BER:
+RS-FEC enables longer reach at lower power than analog-only equalization, but encoding/decoding logic adds constant power overhead that may affect thermal margins.
+
+Silicon Complexity:
+Implementing RS-FEC (especially Clause 91 or Clause 119) requires dedicated decoder logic and buffers. This increases area in PHY IP and may impact integration timelines.
+
+Channel Dependency:
+Gains from RS-FEC vary significantly depending on channel loss characteristics. In some short copper links, the benefits may not justify the cost.
+
+Standards Interoperability:
+Not all devices support optional FECs. Ensure negotiation fallback (Clause 73) is handled gracefully.
+
+
+Characteristics of Expert Context Mode 
+Not sectioned like Smart Designer Mode.
+
+Grouped logically for clarity (e.g. technical overview, real-world relevance, clause interlinks).
+
+A pre-header before the clause summaries (e.g. “🔍 Relevant IEEE Clauses”).
+
+Pulls from all sources: metadata, clause summaries, and external context.
+
+Expert mode
+SiPHY: Siemens Ethernet Clause Assistant
+How does RS-FEC improve link reliability in 25GBASE-R?
+
+RS-FEC (Reed-Solomon Forward Error Correction) is a mechanism used in 25GBASE-R Ethernet links to improve link reliability. It does this by adding redundancy to the transmitted data, allowing the receiver to detect and correct a limited number of errors without needing a retransmission of the data.
+
+In the context of 25GBASE-R, RS-FEC is defined in Clause 108 of the IEEE 802.3-2018 standard. It uses a (544, 514) code, meaning that for every 514 bits of data, 30 additional redundancy bits are added, making a total of 544 bits. This allows the receiver to correct up to 15 bit errors in each 544-bit block.
+
+The use of RS-FEC in 25GBASE-R provides several benefits. Firstly, it improves the Bit Error Rate (BER) performance of the link, making it more robust to noise and interference. This can be particularly beneficial in environments with high levels of electromagnetic interference, or where the link is operating near its maximum specified distance.
+
+Secondly, RS-FEC can help to extend the reach of the link. By allowing the receiver to correct a certain number of bit errors, RS-FEC can compensate for signal degradation that occurs over longer distances. This can enable 25GBASE-R links to operate over longer distances than would be possible without FEC.
+
+However, there are also some trade-offs to consider when using RS-FEC. The addition of redundancy bits increases the amount of data that needs to be transmitted, which can reduce the effective data rate of the link. Furthermore, the process of encoding and decoding the FEC can introduce additional latency, which may be a concern in applications that require low latency.
+
+In terms of best practices, it's important to consider the specific requirements of your application when deciding whether to use RS-FEC. If link reliability and reach are paramount, then RS-FEC can be a valuable tool. However, if low latency or maximum data rate are more important, then it may be preferable to operate without FEC, or to use a different FEC scheme that offers a better trade-off between error correction capability and overhead.
+
+Clause 22 — Clause 22 - Basic MDIO
+
+Summary: Defines a two-wire serial interface (MDIO) for accessing registers within Ethernet PHYs. Supports up to 32 devices and 32 registers using a 5-bit address. Widely used in legacy and low-speed PHY implementations.
+
+Sources: IEEE 802.3-2018 Section 22, Ethernet Alliance PHY Management Overview
+
+Clause 45 — Clause 45 - Extended MDIO
+
+Summary: Expands upon Clause 22 by enabling access to multiple MMDs (Manageable Devices) through a more flexible addressing model. Crucial for high-speed PHYs and complex multi-function devices.
+
+Sources: IEEE 802.3 Clause 45, Synopsys Ethernet IP documentation, Cadence PHY IP Datasheet
+
+Clause 49 — Clause 49 - Auto-Negotiation
+
+Summary: Specifies the Auto-Negotiation protocol for 10GBASE-KR. Allows PHYs to exchange link parameters and training capabilities to ensure optimal settings for signal integrity and performance.
+
+Sources: IEEE 802.3ap, Ethernet Alliance Backplane Ethernet Overview

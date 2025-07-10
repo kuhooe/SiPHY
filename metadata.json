@@ -1,0 +1,146 @@
+[
+  {
+    "clause_number": "22",
+    "title": "Clause 22 - Basic MDIO",
+    "summary": "Defines a two-wire serial interface (MDIO) for accessing registers within Ethernet PHYs. Supports up to 32 devices and 32 registers using a 5-bit address. Widely used in legacy and low-speed PHY implementations.",
+    "keywords": ["MDIO", "Clause 22", "register access"],
+    "sources": ["IEEE 802.3-2018 Section 22", "Ethernet Alliance PHY Management Overview"],
+    "external_context": "Simple and widely adopted, but lacks scalability for complex multi-function PHYs. Often used in 1G/10G legacy networks where minimal management is required."
+  },
+  {
+    "clause_number": "45",
+    "title": "Clause 45 - Extended MDIO",
+    "summary": "Expands upon Clause 22 by enabling access to multiple MMDs (Manageable Devices) through a more flexible addressing model. Crucial for high-speed PHYs and complex multi-function devices.",
+    "keywords": ["Clause 45", "extended address", "MDIO"],
+    "sources": ["IEEE 802.3 Clause 45", "Synopsys Ethernet IP documentation", "Cadence PHY IP Datasheet"],
+    "external_context": "Preferred for high-speed applications, especially above 10G. Adds overhead, but enables better diagnostics, loopback control, and extended vendor-specific functions."
+  },
+  {
+    "clause_number": "49",
+    "title": "Clause 49 - Auto-Negotiation",
+    "summary": "Specifies the Auto-Negotiation protocol for 10GBASE-KR. Allows PHYs to exchange link parameters and training capabilities to ensure optimal settings for signal integrity and performance.",
+    "keywords": ["auto-negotiation", "Clause 49", "10GBASE-KR"],
+    "sources": ["IEEE 802.3ap", "Ethernet Alliance Backplane Ethernet Overview"],
+    "external_context": "Works effectively in 10G backplane scenarios, but lacks extensibility for modern multi-rate interfaces. Superseded in 25G/50G+ PHYs by Clauses 73/76."
+  },
+  {
+    "clause_number": "72",
+    "title": "Clause 72 - Link Training",
+    "summary": "Describes the link training protocol used by backplane Ethernet to optimize transmitter settings based on receiver feedback. Essential for PAM2/PAM4-based signaling in lossy channels.",
+    "keywords": ["link training", "Clause 72", "backplane"],
+    "sources": ["IEEE 802.3ap Clause 72", "Broadcom PHY Architecture Notes", "Alphawave DSP Technical Guide"],
+    "external_context": "Crucial for robust link bring-up at 10G+ rates. Can add latency during initialization. Training algorithms must be carefully validated across process corners and temperature."
+  },
+  {
+    "clause_number": "73",
+    "title": "Clause 73 - AN for Backplane",
+    "summary": "Extends Clause 37 to support high-speed serial backplanes with an updated protocol for device capability exchange. Works with Clause 72 for link optimization.",
+    "keywords": ["Clause 73", "auto-negotiation", "backplane"],
+    "sources": ["IEEE 802.3ap", "Ethernet Alliance Training Protocol Guide"],
+    "external_context": "Used in 25G/50G/100G backplane PHYs. Robust but protocol complexity increases. Must ensure interoperability across vendors (e.g., Marvell, Broadcom, Synopsys)."
+  },
+  {
+    "clause_number": "74",
+    "title": "Clause 74 - RS-FEC for 25G",
+    "summary": "Introduces RS-FEC for 10G/25G backplane links. Improves BER by correcting symbol errors, enabling longer copper traces and higher data rates.",
+    "keywords": ["Clause 74", "FEC", "error correction"],
+    "sources": ["IEEE 802.3 Clause 74", "Marvell RS-FEC Whitepaper"],
+    "external_context": "Mandatory for most 25GBASE-KR deployments. Adds latency (~120ns typical) and overhead, but critical for maintaining BER in long backplanes and dense packages."
+  },
+  {
+    "clause_number": "76",
+    "title": "Clause 76 - 25G/50G Auto-Neg",
+    "summary": "Supports Auto-Negotiation and training for 25G and 50G links over backplanes and copper cables. Helps identify multi-lane aggregation and signal integrity support.",
+    "keywords": ["Clause 76", "25G", "50G", "auto-negotiation"],
+    "sources": ["IEEE 802.3by", "Synopsys Multi-Gig IP Brief", "Intel PHY Mode Negotiation Notes"],
+    "external_context": "Preferred over Clause 73 in 25G/50GBASE-CR/KR links. Enables backward compatibility but must be tuned for latency and PHY wake-up time in datacenter NICs."
+  },
+  {
+    "clause_number": "78",
+    "title": "Clause 78 - 25G/50G FEC",
+    "summary": "Details RS-FEC for 25G/50G PAM2 links using Clause 74’s encoding model. Enables higher reach in copper deployments by improving error resilience.",
+    "keywords": ["Clause 78", "FEC", "25G", "PAM2"],
+    "sources": ["IEEE 802.3 Clause 78", "Broadcom Ethernet PHY Tech Brief"],
+    "external_context": "Used in single-lane 25G/50G direct attach cables. Broadcom and Intel include Clause 78 FEC in their ASICs to support passive copper longer than 3m."
+  },
+  {
+    "clause_number": "83",
+    "title": "Clause 83 - PAM4 Signaling",
+    "summary": "Defines 4-level Pulse Amplitude Modulation (PAM4) for 50G/100G/200G/400G Ethernet links. PAM4 doubles bits per symbol compared to NRZ but needs advanced FEC.",
+    "keywords": ["Clause 83", "PAM4", "signaling"],
+    "sources": ["IEEE 802.3cd", "Ethernet Alliance PAM4 Slide Deck", "Alphawave High-Speed PHY Training"],
+    "external_context": "Reduces channel bandwidth requirement but increases signal complexity. Requires tight control of jitter and crosstalk. Cadence and Alphawave offer DSPs tailored for PAM4 PHYs."
+  },
+  {
+    "clause_number": "91",
+    "title": "Clause 91 - RS-FEC for PAM4",
+    "summary": "Robust FEC for 100G/200G PAM4 links using a (544,514) RS-FEC. Corrects up to 15 symbol errors per block, enabling reliable transmission.",
+    "keywords": ["Clause 91", "RS-FEC", "PAM4"],
+    "sources": ["IEEE 802.3 Clause 91", "Synopsys RS-FEC Whitepaper", "Ethernet Alliance High-Speed PHY Guide"],
+    "external_context": "Required for all PAM4 Ethernet deployments. Adds latency (~150ns) and hardware complexity. Interoperability testing critical, especially in breakout cables and AOCs."
+  },
+  {
+    "clause_number": "106",
+    "title": "Clause 106 - 100GBASE-KR4",
+    "summary": "Specifies 4-lane backplane Ethernet at 25G per lane using PAM4 signaling and RS-FEC. Includes equalization requirements and supports Clause 73/91 negotiation and correction.",
+    "keywords": ["Clause 106", "100GBASE-KR4", "PAM4"],
+    "sources": ["IEEE 802.3cd Clause 106", "Broadcom 100G PHY Integration Notes", "Alphawave KR4 DSP Modeling"],
+    "external_context": "Provides a scalable and cost-efficient backplane solution, but insertion loss must be tightly managed. Equalization and training loops must be validated across corners."
+  },
+  {
+    "clause_number": "107",
+    "title": "Clause 107 - 200GBASE-KR4",
+    "summary": "Defines 200GBASE-KR4 with PAM4 signaling at 50G/lane. Includes FEC, equalization, and link training protocols based on Clause 91.",
+    "keywords": ["Clause 107", "200GBASE-KR4", "PAM4"],
+    "sources": ["IEEE 802.3cd", "Intel 200G Backplane PHY Whitepaper"],
+    "external_context": "Used in switch ASICs with PAM4 SerDes. Channel constraints increase significantly at 50G/lane. Intel and Marvell solutions require tight PCB trace budgets."
+  },
+  {
+    "clause_number": "108",
+    "title": "Clause 108 - 200GBASE-CR4",
+    "summary": "200GBASE-CR4 for 4-lane copper twinax cables at 50G/lane using PAM4 and RS-FEC. Includes specific return loss and insertion loss specs.",
+    "keywords": ["Clause 108", "CR4", "200G", "copper"],
+    "sources": ["IEEE 802.3cd", "Amphenol Cable Design Guide"],
+    "external_context": "Passive DAC support for 1-3 meters. Eye margin is tight at 50G PAM4. FEC performance must be validated with test equipment (e.g., Keysight, Tektronix)."
+  },
+  {
+    "clause_number": "109",
+    "title": "Clause 109 - 100GBASE-CR2",
+    "summary": "100G over 2 lanes of twinax copper at 50G/lane. Supports QSFP-DD and SFP-DD breakout applications.",
+    "keywords": ["Clause 109", "CR2", "breakout", "100G"],
+    "sources": ["IEEE 802.3cd", "Credo SFP-DD DAC Report"],
+    "external_context": "Common in hyperscale datacenters. 2-lane deployments simplify cost but stress connector insertion loss budgets. Tighter impedance matching required than CR4."
+  },
+  {
+    "clause_number": "110",
+    "title": "Clause 110 - 50GBASE-KR",
+    "summary": "Specifies 1-lane backplane Ethernet at 50G using PAM4 and Clause 91 FEC. Backplane designs must limit IL within 28dB@26.5GHz.",
+    "keywords": ["Clause 110", "50GBASE-KR", "PAM4"],
+    "sources": ["IEEE 802.3cd", "Alphawave 50G DSP Tuning Notes"],
+    "external_context": "Used in server backplane connections. Requires high-performance DSP and equalization. Alphawave and Broadcom offer multi-mode PHYs for KR/CR convergence."
+  },
+  {
+    "clause_number": "111",
+    "title": "Clause 111 - 50GBASE-CR",
+    "summary": "Specifies 1-lane 50G Ethernet over twinax cables with PAM4. Uses Clause 91 FEC and similar specs to Clause 110.",
+    "keywords": ["Clause 111", "50GBASE-CR", "PAM4"],
+    "sources": ["IEEE 802.3cd", "Amphenol Cable Design Guide", "Cadence PHY Compliance Notes"],
+    "external_context": "Interoperability is sensitive to cable quality and connector return loss. Tested in 1m-2m passive DACs. Equalizer tuning and compliance validation are critical."
+  },
+  {
+    "clause_number": "112",
+    "title": "Clause 112 - 100GBASE-CR2/KR2",
+    "summary": "Defines 2-lane 100G Ethernet over twinax (CR2) and backplane (KR2) with PAM4. Uses Clause 91 FEC.",
+    "keywords": ["Clause 112", "100G", "KR2", "CR2"],
+    "sources": ["IEEE 802.3cd", "Broadcom CR2 Implementation Guide"],
+    "external_context": "High density and cost-efficient. PCB routing more forgiving than 50G/lane. Used in SFP-DD/QSFP-DD breakout scenarios. Connector losses must be modeled carefully."
+  },
+  {
+    "clause_number": "135",
+    "title": "Clause 135 - 100GBASE-KR1/CR1",
+    "summary": "Specifies single-lane 100G Ethernet over copper (CR1) and backplane (KR1) using PAM4 and advanced FEC.",
+    "keywords": ["Clause 135", "100GBASE-KR1", "100GBASE-CR1", "PAM4"],
+    "sources": ["IEEE 802.3ck", "Alphawave KR1/CR1 Reference Design", "Cadence Compliance Checklist"],
+    "external_context": "Extremely tight signal margin. Requires retimers or advanced DSP PHYs. Channel simulation and crosstalk modeling are essential. Used in next-gen AI server topologies."
+  }
+]
