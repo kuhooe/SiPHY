@@ -45,6 +45,8 @@ def get_openai_answer(query, context, mode, sources=None):
         temperature=0.2,
 )
 
+)
+
     )
 
     content = response.choices[0].message.content.strip()
