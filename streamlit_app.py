@@ -113,6 +113,19 @@ Future
 st.image("siemens_logo.png", width=100)
 st.title(APP_NAME)
 
+# ⚠️ Temporary cache warning for testers
+if "hide_warning" not in st.session_state:
+    st.session_state["hide_warning"] = False
+
+if not st.session_state["hide_warning"]:
+    with st.container():
+        st.warning(
+            "⚠️ If you see `Failed to fetch dynamically imported module` error, please clear your browser cache (Ctrl+Shift+R) and reload.",
+            icon="⚠️"
+        )
+        if st.button("Dismiss warning"):
+            st.session_state["hide_warning"] = True
+
 # 📃 Chat History Rendering
 for q, a in zip(st.session_state["questions"], st.session_state["answers"]):
     with st.chat_message("user"):
