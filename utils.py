@@ -168,10 +168,13 @@ def parse_sectioned_response(response_text):
     if summary_lines:
         formatted += "\n".join(summary_lines).strip() + "\n\n"
 
-    for header in section_headers:
-        formatted += f"**{header}**\n\n{sections[header].strip()}\n\n"
+   for header in section_headers:
+    content = sections[header].strip()
+    if content:
+        formatted += f"**{header}**\n\n{content}\n\n"
 
-    return formatted.strip()
+return formatted.strip()
+
 
 # 🗕️ FAISS-Based Semantic Clause Retrieval
 VECTORSTORE_PATH = "vectorstore/faiss.index"
