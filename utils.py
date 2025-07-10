@@ -10,10 +10,8 @@ import faiss
 import numpy as np
 from openai import OpenAI
 
-import streamlit as st
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 print("✅ Loaded OpenAI Key:", st.secrets["OPENAI_API_KEY"][:10])
-
 
 # 💬 OpenAI Answer Generator
 def get_openai_answer(query, context, mode, sources=None):
@@ -40,7 +38,7 @@ def get_openai_answer(query, context, mode, sources=None):
     ]
 
     response = client.chat.completions.create(
-        model="gpt-4-0125-preview",  # ✅ This is GPT-4.1
+        model="gpt-4-0125-preview",  # ✅ GPT-4.1
         messages=messages,
         temperature=0.2,
     )
@@ -59,7 +57,6 @@ def get_openai_answer(query, context, mode, sources=None):
             content += "\n".join(f"- {c}" for c in clause_list)
 
     return content
-
 
 # 🧠 Embedding Generator
 def get_embedding(text, model="text-embedding-3-small"):
@@ -142,7 +139,6 @@ def format_clause_context(clauses, mode):
 def parse_sectioned_response(response_text):
     mode_header = "**[Smart Designer Mode]**\n\n"
 
-    # Remove mode label (non-bold) from start
     cleaned = response_text.strip()
     if cleaned.startswith("[Smart Designer Mode]"):
         cleaned = cleaned[len("[Smart Designer Mode]"):].strip()
@@ -163,18 +159,16 @@ def parse_sectioned_response(response_text):
         else:
             summary_lines.append(line)
 
-    # Rebuild formatted output
     formatted = mode_header
     if summary_lines:
         formatted += "\n".join(summary_lines).strip() + "\n\n"
 
-   for header in section_headers:
-    content = sections[header].strip()
-    if content:
-        formatted += f"**{header}**\n\n{content}\n\n"
+    for header in section_headers:
+        content = sections[header].strip()
+        if content:
+            formatted += f"**{header}**\n\n{content}\n\n"
 
-return formatted.strip()
-
+    return formatted.strip()
 
 # 🗕️ FAISS-Based Semantic Clause Retrieval
 VECTORSTORE_PATH = "vectorstore/faiss.index"
