@@ -1,15 +1,9 @@
-Try asking SiPHY things like:
-
-1. What is 64b/66b encoding and why is it used in Ethernet?
-2. How does Clause 91 RS-FEC help reduce packet drops?
-3. What happens during lane deskew in 25GBASE-R?
-4. Why not use 8b/10b encoding in 10G Ethernet?
-5. Can you do "bump on a wire" design that does not require a Zynq device / micro processor interface?
-6. What’s the role of training sequences in 100G Ethernet?
-7. Explain LTSSM state transitions with timing constraints.
-8. Which Ethernet mode (10GBASE-KR vs 10GBASE-R) is better for low-power backplane?
-9. Can I use PCIe Gen4 over retimers for a latency-sensitive accelerator?
-10. Which lane bonding options are valid for PCIe Gen5 x16 in this floorplan?
-11. Can I disable replay buffer if I don’t need retry in SRIOV mode?
-12. Why does my PCIe link get stuck in Recovery.RcvrCfg?
-13. Why are FEC errors spiking under 100G Ethernet load?
+You can try asking SiPHY any ethernet protocol related questions. Below are just some examples to help you get started. 
+1. What’s the role of training sequences in 100G Ethernet?
+2. Explain LTSSM state transitions with timing constraints.
+3. Which Ethernet mode (10GBASE-KR vs 10GBASE-R) is better for low-power backplane?
+4. Can I use PCIe Gen4 over retimers for a latency-sensitive accelerator?
+5. Which lane bonding options are valid for PCIe Gen5 x16 in this floorplan?
+6. Can I disable replay buffer if I don’t need retry in SRIOV mode?
+7. Why does my PCIe link get stuck in Recovery.RcvrCfg?
+8. Why are FEC errors spiking under 100G Ethernet load?
