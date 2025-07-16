@@ -94,7 +94,7 @@ def generate_pdf(history):
     os.makedirs("exports", exist_ok=True)
     filename = f"exports/chat_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.pdf"
     pdf.output(filename)
-    return filename
+return filename
 
 def export_chat_history_to_pdf(questions, answers):
     os.makedirs("exports", exist_ok=True)
