@@ -9,6 +9,11 @@ from fpdf import FPDF
 import faiss
 import numpy as np
 from openai import OpenAI
+import unicodedata
+
+def sanitize(text):
+    return unicodedata.normalize("NFKD", text).encode("latin-1", "ignore").decode("latin-1")
+
 
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 print("✅ Loaded OpenAI Key:", st.secrets["OPENAI_API_KEY"][:10])
@@ -88,15 +93,17 @@ def generate_pdf(questions, answers):
     pdf.cell(200, 10, txt="SiPHY Assistant Chat History", ln=True, align="C")
 
     for i, (q, a) in enumerate(zip(questions, answers)):
+        q_clean = sanitize(q)
+        a_clean = sanitize(a)
         pdf.set_font("Arial", style="B", size=12)
-        pdf.multi_cell(0, 10, f"Q{i+1}: {q}")
+        pdf.multi_cell(0, 10, f"Q{i+1}: {q_clean}")
         pdf.set_font("Arial", style="", size=12)
-        pdf.multi_cell(0, 10, f"A{i+1}: {a}")
+        pdf.multi_cell(0, 10, f"A{i+1}: {a_clean}")
         pdf.ln(5)
 
     filename = f"exports/chat_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.pdf"
     pdf.output(filename)
-    return filename 
+    return filename
 
 # 🧠 Clause Formatter
 def format_clause_context(clauses, mode):
