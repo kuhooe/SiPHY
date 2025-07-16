@@ -58,8 +58,8 @@ with st.sidebar:
 	        filename = generate_pdf(history)
 	        st.success("Chat history exported successfully.")
 	        st.markdown(f"[📄 Download PDF]({filename})", unsafe_allow_html=True)
-	else:
-	    st.warning("No chat history to export.")
+        else:
+            st.warning("No chat history to export.")
 			
 with st.expander("ℹ️ About SiPHY"):
         st.markdown("**Protocol design assistant using OpenAI + FAISS + clause metadata.**")
