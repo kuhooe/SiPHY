@@ -12,7 +12,6 @@ from utils import (
     parse_sectioned_response,
     generate_pdf,
     save_query_history,
-    generate_pdf,
 )
 from ethernet_bot import answer_ethernet_query
 
@@ -55,7 +54,7 @@ with st.sidebar:
     if st.button("Export Chat as PDF"):
         if st.session_state["questions"]:
             history = list(zip(st.session_state["questions"], st.session_state["answers"]))
-            filename = generate_pdf(history)
+            filename = generate_pdf("questions", "answers")
             st.success("Chat history exported successfully.")
             st.markdown(f"[📄 Download PDF]({filename})", unsafe_allow_html=True)
         else:
