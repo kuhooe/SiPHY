@@ -14,7 +14,6 @@ import unicodedata
 def sanitize(text):
     return unicodedata.normalize("NFKD", text).encode("latin-1", "ignore").decode("latin-1")
 
-
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 print("✅ Loaded OpenAI Key:", st.secrets["OPENAI_API_KEY"][:10])
 
@@ -88,16 +87,18 @@ def generate_pdf(questions, answers):
     os.makedirs("exports", exist_ok=True)
     pdf = FPDF()
     pdf.add_page()
-    pdf.set_font("Arial", size=12)
+
+    # Use a safe built-in font
+    pdf.set_font("Helvetica", size=12)
     pdf.set_title("SiPHY Assistant Chat")
     pdf.cell(200, 10, txt="SiPHY Assistant Chat History", ln=True, align="C")
 
     for i, (q, a) in enumerate(zip(questions, answers)):
         q_clean = sanitize(q)
         a_clean = sanitize(a)
-        pdf.set_font("Arial", style="B", size=12)
+        pdf.set_font("Helvetica", style="B", size=12)
         pdf.multi_cell(0, 10, f"Q{i+1}: {q_clean}")
-        pdf.set_font("Arial", style="", size=12)
+        pdf.set_font("Helvetica", style="", size=12)
         pdf.multi_cell(0, 10, f"A{i+1}: {a_clean}")
         pdf.ln(5)
 
