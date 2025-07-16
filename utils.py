@@ -97,9 +97,9 @@ def generate_pdf(questions, answers):
         q_clean = sanitize(q)
         a_clean = sanitize(a)
         pdf.set_font("Helvetica", style="B", size=12)
-        pdf.multi_cell(0, 10, f"Q{i+1}: {q_clean}")
+        pdf.multi_cell(0, 10, sanitize(f"Q{i+1}: {q}"))
         pdf.set_font("Helvetica", style="", size=12)
-        pdf.multi_cell(0, 10, f"A{i+1}: {a_clean}")
+        pdf.multi_cell(0, 10, sanitize(f"A{i+1}: {a}"))
         pdf.ln(5)
 
     filename = f"exports/chat_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.pdf"
