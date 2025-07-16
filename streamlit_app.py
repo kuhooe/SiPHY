@@ -77,7 +77,7 @@ with st.sidebar:
 
     ### Potential Use Cases
 
-    **1. Protocol Coach Mode**  
+    1. Protocol Coach Mode  
     • Teaches engineers the functional behavior of protocols  
     • Answers live questions like:  
       o “What happens in the PCIe Gen5 equalization phase?”  
