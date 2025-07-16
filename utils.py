@@ -57,11 +57,6 @@ def get_openai_answer(query, context, mode, sources=None):
 
     content = response.choices[0].message.content.strip()
 
-    if mode == "Smart Designer":
-        content = f"[Smart Designer Mode]\n\n{content}"
-    elif mode == "Expert Context Mode":
-        content = f"[Expert Context Mode]\n\n{content}"
-
     if mode == "Expert Context Mode" and sources:
         clause_list = sorted(set(s.get("clause") or s.get("ref") for s in sources if s.get("clause") or s.get("ref")))
         if clause_list:
