@@ -116,12 +116,12 @@ def format_clause_context(clauses, mode):
         context += "\n"
     return context
 
-# 🥥 Response Parser
+# 🥥 Response Parser (fixed)
 def parse_sectioned_response(response_text):
-    mode_header = "**[Smart Designer Mode]**\n\n"
     section_headers = ["Tradeoffs", "Caveats", "Real-World Context"]
     cleaned = response_text.strip()
 
+    # Remove any legacy labels if still present
     if cleaned.startswith("[Smart Designer Mode]"):
         cleaned = cleaned[len("[Smart Designer Mode]"):].strip()
 
@@ -140,7 +140,7 @@ def parse_sectioned_response(response_text):
         else:
             summary_lines.append(line)
 
-    formatted = mode_header
+    formatted = ""
     if summary_lines:
         formatted += "\n".join(summary_lines).strip() + "\n\n"
     for header in section_headers:
