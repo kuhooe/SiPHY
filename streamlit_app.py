@@ -8,13 +8,11 @@ import streamlit.components.v1 as components
 from constants import MODES, APP_NAME
 from utils import (
     init_session_state,
-    format_clause_context,
-    get_openai_answer,
     parse_sectioned_response,
     export_chat_history_to_pdf,
-    save_query_history,
-    retrieve_relevant_clauses
 )
+from clause_feedback import save_query_history
+from Answer_Ethernet_Query import answer_ethernet_query  # ✅ Use centralized response logic
 
 # Init
 os.makedirs("exports", exist_ok=True)
@@ -102,17 +100,18 @@ user_query = st.chat_input("Ask a protocol question (Ethernet, PCIe, UCIE...)")
 if user_query:
     st.session_state["pending_query"] = user_query
 
+# 🚀 Unified Query Handler
 if "pending_query" in st.session_state:
     q = st.session_state.pop("pending_query")
-    with st.chat_message("user"): st.markdown(q)
+    with st.chat_message("user"):
+        st.markdown(q)
     with st.chat_message("assistant"):
         with st.spinner("Analyzing protocol clauses..."):
             try:
-                clauses = retrieve_relevant_clauses(q, st.session_state["mode"])
-                context = format_clause_context(clauses, st.session_state["mode"])
-                answer = get_openai_answer(q, context, st.session_state["mode"], clauses)
+                answer, clauses = answer_ethernet_query(q, st.session_state["mode"])
                 parsed = parse_sectioned_response(answer)
-                if parsed.strip(): answer = parsed
+                if parsed.strip():
+                    answer = parsed
             except Exception as e:
                 answer = f"Error generating answer: {e}"
                 clauses = []
