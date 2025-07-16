@@ -79,11 +79,6 @@ def save_query_history(question, answer, clauses):
     })
 
 # 📜 PDF Exporter
-# 📜 PDF Exporter
-from fpdf import FPDF
-from datetime import datetime
-import os
-
 def generate_pdf(history):
     pdf = FPDF()
     pdf.set_auto_page_break(auto=True, margin=15)
