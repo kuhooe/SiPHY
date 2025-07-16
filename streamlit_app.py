@@ -10,7 +10,7 @@ from utils import (
     init_session_state,
     format_clause_context,
     parse_sectioned_response,
-    export_chat_history_to_pdf,
+    generatte_pdf,
     save_query_history,
     generate_pdf,
 )
