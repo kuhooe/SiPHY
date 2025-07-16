@@ -17,7 +17,7 @@ def answer_ethernet_query(question, mode):
 
     answer = get_openai_answer(question, context, mode)
 
-    # 🔧 Add design disclaimer
+    # ⚠️ Add design disclaimer for Smart Designer and Expert modes
     if "smart designer" in mode.lower() or "expert" in mode.lower():
         disclaimer = (
             "\u26a0\ufe0f *Note: This response is based solely on Ethernet protocol standards and known behavior patterns. "
@@ -25,15 +25,15 @@ def answer_ethernet_query(question, mode):
         )
         answer = disclaimer + answer
 
-    # 🔧 Fix response labeling
+    # 🔧 Fix response labeling (only once)
     if "smart designer" in mode.lower():
         answer = f"**Smart Designer Mode Response**\n\n{answer}"
     elif "expert" in mode.lower():
-        sources = "\n".join(f"- Clause {c['clause_id']}: {c['title']}" for c in clauses)
-        answer = f"**Expert Context Mode Response**\n\n{answer}\n\n**Citations**\n\n{sources}"
+        citations = "\n".join(f"- Clause {c['clause_id']}: {c['title']}" for c in clauses)
+        answer = f"**Expert Context Mode Response**\n\n{answer}\n\n**Citations**\n\n{citations}"
     elif "strict" in mode.lower():
-        answer = f"**Strict Clause Lookup Mode Response**\n\n{answer}"
-        
+        answer = f"**Strict Clause Lookup Mode Response**\n\n{answer}"    
+   
     except Exception:
         return "OpenAI failed to answer the query.", clauses
 
