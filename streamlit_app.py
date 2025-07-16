@@ -53,14 +53,14 @@ with st.sidebar:
     )
 
     if st.button("Export Chat as PDF"):
-    if st.session_state["questions"]:
-        filename = export_chat_history_to_pdf(
-            st.session_state["questions"], st.session_state["answers"]
-        )
-        st.success("Chat history exported successfully.")
-        st.markdown(f"[📄 Download PDF]({filename})", unsafe_allow_html=True)
-    else:
-        st.warning("No chat history to export.")
+        if st.session_state["questions"]:
+            filename = export_chat_history_to_pdf(
+                st.session_state["questions"], st.session_state["answers"]
+            )
+            st.success("Chat history exported successfully.")
+            st.markdown(f"[📄 Download PDF]({filename})", unsafe_allow_html=True)
+        else:
+            st.warning("No chat history to export.")
 
     with st.expander("ℹ️ About SiPHY"):
         st.markdown("**Protocol design assistant using OpenAI + FAISS + clause metadata.**")
