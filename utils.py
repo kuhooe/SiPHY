@@ -88,14 +88,11 @@ def generate_pdf(questions, answers):
     pdf = FPDF()
     pdf.add_page()
 
-    # Use a safe built-in font
     pdf.set_font("Helvetica", size=12)
     pdf.set_title("SiPHY Assistant Chat")
     pdf.cell(200, 10, txt="SiPHY Assistant Chat History", ln=True, align="C")
 
     for i, (q, a) in enumerate(zip(questions, answers)):
-        q_clean = sanitize(q)
-        a_clean = sanitize(a)
         pdf.set_font("Helvetica", style="B", size=12)
         pdf.multi_cell(0, 10, sanitize(f"Q{i+1}: {q}"))
         pdf.set_font("Helvetica", style="", size=12)
