@@ -32,7 +32,7 @@ elif "expert" in mode.lower():
     answer = f"**Expert Context Mode Response**\n\n{answer}\n\n_Disclaimer: Interpretive response. Always verify with clause data._"
 elif "strict" in mode.lower():
     answer = f"**Strict Clause Lookup Mode Response**\n\n{answer}"
-
+answer = "🐞 DEBUG MODE ACTIVE\n\n" + answer
     return answer, clauses
 
     except Exception:
