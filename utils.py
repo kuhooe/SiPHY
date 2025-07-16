@@ -112,6 +112,7 @@ def export_chat_history_to_pdf(questions, answers):
 
     filename = f"exports/chat_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.pdf"
     pdf.output(filename)
+return filename 
 
 # 🧠 Clause Formatter
 def format_clause_context(clauses, mode):
