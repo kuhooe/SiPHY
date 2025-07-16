@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import tiktoken
 import streamlit as st
 from datetime import datetime
-from fpdf import FPDF
+# from fpdf import FPDF
 import faiss
 import numpy as np
 from openai import OpenAI
@@ -83,25 +83,25 @@ def save_query_history(question, answer, clauses):
     })
 
 # 📜 PDF Exporter
-def generate_pdf(questions, answers):
-    os.makedirs("exports", exist_ok=True)
-    pdf = FPDF()
-    pdf.add_page()
+#def generate_pdf(questions, answers):
+#    os.makedirs("exports", exist_ok=True)
+#    pdf = FPDF()
+#    pdf.add_page()
 
-    pdf.set_font("Helvetica", size=12)
-    pdf.set_title("SiPHY Assistant Chat")
-    pdf.cell(200, 10, txt="SiPHY Assistant Chat History", ln=True, align="C")
+#    pdf.set_font("Helvetica", size=12)
+#    pdf.set_title("SiPHY Assistant Chat")
+#    pdf.cell(200, 10, txt="SiPHY Assistant Chat History", ln=True, align="C")
 
-    for i, (q, a) in enumerate(zip(questions, answers)):
-        pdf.set_font("Helvetica", style="B", size=12)
-        pdf.multi_cell(0, 10, sanitize(f"Q{i+1}: {q}"))
-        pdf.set_font("Helvetica", style="", size=12)
-        pdf.multi_cell(0, 10, sanitize(f"A{i+1}: {a}"))
-        pdf.ln(5)
+#    for i, (q, a) in enumerate(zip(questions, answers)):
+#        pdf.set_font("Helvetica", style="B", size=12)
+#        pdf.multi_cell(0, 10, sanitize(f"Q{i+1}: {q}"))
+#        pdf.set_font("Helvetica", style="", size=12)
+#        pdf.multi_cell(0, 10, sanitize(f"A{i+1}: {a}"))
+#        pdf.ln(5)
 
-    filename = f"exports/chat_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.pdf"
-    pdf.output(filename)
-    return filename
+#    filename = f"exports/chat_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.pdf"
+#    pdf.output(filename)
+#    return filename
 
 # 🧠 Clause Formatter
 def format_clause_context(clauses, mode):
