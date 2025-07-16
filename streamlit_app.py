@@ -12,6 +12,7 @@ from utils import (
     parse_sectioned_response,
     export_chat_history_to_pdf,
     save_query_history,
+    generate_pdf,
 )
 from ethernet_bot import answer_ethernet_query
 
@@ -51,7 +52,7 @@ with st.sidebar:
         index=MODES.index(st.session_state.get("mode", "Smart Designer"))
     )
 
-   if st.button("Export Chat as PDF"):
+    if st.button("Export Chat as PDF"):
     if st.session_state["questions"]:
         filename = export_chat_history_to_pdf(
             st.session_state["questions"], st.session_state["answers"]
@@ -90,7 +91,7 @@ sample_questions = [
     "What is 64b/66b encoding and why is it used in Ethernet?",
     "How does Clause 91 RS-FEC help reduce packet drops?",
     "What happens during lane deskew in 25GBASE-R?",
-    "Why not use 8b/10b encoding in 10G Ethernet?",
+    "Why shouldn't you use 8b/10b encoding in 10G Ethernet?",
     "Can you do \"bump on a wire\" design that does not require a Zynq device?"
 ]
 st.markdown("**Try asking:**")
