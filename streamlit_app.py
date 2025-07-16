@@ -102,14 +102,12 @@ Future
 """)
 
 # 📄 Sample Questions Viewer
-    st.markdown("**Protocol design assistant using OpenAI + FAISS + clause metadata.**")
-
-    if os.path.exists("sample_questions.txt"):
-        with open("sample_questions.txt", "r") as f:
-            sample_qs_text = f.read()
-        with st.expander("📄 View All Sample Questions"):
-            st.text_area("Sample Questions", value=sample_qs_text, height=300, disabled=True)
-            st.text_area("Sample Questions", f.read(), height=300, disabled=True)
+if os.path.exists("sample_questions.txt"):
+    with open("sample_questions.txt", "r") as f:
+        sample_qs_text = f.read()
+    with st.expander("📄 View All Sample Questions"):
+        st.text_area("Sample Questions", value=sample_qs_text, height=300, disabled=True)
+        st.text_area("Sample Questions", f.read(), height=300, disabled=True)
 # Header
 st.image("siemens_logo.png", width=100)
 st.title(APP_NAME)
