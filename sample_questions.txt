@@ -1,4 +1,5 @@
-You can try asking SiPHY any ethernet protocol related questions. Below are just some examples to help you get started. 
+**You can try asking SiPHY any ethernet protocol related questions. Below are just some examples to help you get started. **
+
 1. What’s the role of training sequences in 100G Ethernet?
 2. Explain LTSSM state transitions with timing constraints.
 3. Which Ethernet mode (10GBASE-KR vs 10GBASE-R) is better for low-power backplane?
