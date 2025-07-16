@@ -30,7 +30,6 @@ def answer_ethernet_query(question, mode):
         if "smart designer" in mode.lower():
             answer = f"**Smart Designer Mode Response**\n\n{answer}"
         elif "expert" in mode.lower():
-            citations = "\n".join(f"- Clause {c['clause_id']}: {c['title']}" for c in clauses)
             answer = f"**Expert Context Mode Response**\n\n{answer}\n\n**Citations**\n\n{citations}"
         elif "strict" in mode.lower():
             answer = f"**Strict Clause Lookup Mode Response**\n\n{answer}"
