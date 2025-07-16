@@ -10,7 +10,7 @@ from utils import (
     init_session_state,
     format_clause_context,
     parse_sectioned_response,
-    generate_pdf,
+#    generate_pdf,
     save_query_history,
 )
 from ethernet_bot import answer_ethernet_query
@@ -51,13 +51,13 @@ with st.sidebar:
         index=MODES.index(st.session_state.get("mode", "Smart Designer"))
     )
 
-    if st.button("Export Chat as PDF"):
-        if st.session_state["questions"]:
-            filename = generate_pdf(st.session_state["questions"], st.session_state["answers"])
-            st.success("Chat history exported successfully.")
-            st.markdown(f"[📄 Download PDF]({filename})", unsafe_allow_html=True)
-        else:
-            st.warning("No chat history to export.")
+   # if st.button("Export Chat as PDF"):
+   #     if st.session_state["questions"]:
+   #         filename = generate_pdf(st.session_state["questions"], st.session_state["answers"])
+   #         st.success("Chat history exported successfully.")
+   #         st.markdown(f"[📄 Download PDF]({filename})", unsafe_allow_html=True)
+   #     else:
+   #         st.warning("No chat history to export.")
 
     with st.expander("ℹ️ About SiPHY"):
         st.markdown("""
