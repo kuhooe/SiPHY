@@ -26,17 +26,15 @@ def answer_ethernet_query(question, mode):
         answer = disclaimer + answer
 
     # 🔧 Fix response labeling (only once)
-    if "smart designer" in mode.lower():
-    answer = f"**Smart Designer Mode Response**\n\n{answer}"
-    answer = "🐞 DEBUG MODE ACTIVE\n\n" + answer
+    # 🔧 Fix response labeling and insert debug marker
+if "smart designer" in mode.lower():
+    answer = f"🐞 DEBUG MODE ACTIVE\n\n**Smart Designer Mode Response**\n\n{answer}"
 elif "expert" in mode.lower():
-    answer = f"**Expert Context Mode Response**\n\n{answer}\n\n_Disclaimer: Interpretive response. Always verify with clause data._"
-    answer = "🐞 DEBUG MODE ACTIVE\n\n" + answer
+    answer = f"🐞 DEBUG MODE ACTIVE\n\n**Expert Context Mode Response**\n\n{answer}\n\n_Disclaimer: Interpretive response. Always verify with clause data._"
 elif "strict" in mode.lower():
-    answer = f"**Strict Clause Lookup Mode Response**\n\n{answer}"
-    answer = "🐞 DEBUG MODE ACTIVE\n\n" + answer
+    answer = f"🐞 DEBUG MODE ACTIVE\n\n**Strict Clause Lookup Mode Response**\n\n{answer}"
 
-    return answer, clauses
+return answer, clauses
 
-    except Exception:
-        return "OpenAI failed to answer the query.", []
+except Exception:
+    return "OpenAI failed to answer the query.", []
