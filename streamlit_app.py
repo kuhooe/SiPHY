@@ -46,7 +46,7 @@ div[data-testid="stChatMessage"] {
 # Sidebar
 with st.sidebar:
     st.markdown("### Query Mode")
-        st.session_state["mode"] = st.selectbox(
+    st.session_state["mode"] = st.selectbox(
         "Choose reasoning mode:",
         options=MODES,
         index=MODES.index(st.session_state.get("mode", "Smart Designer"))
