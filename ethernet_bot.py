@@ -28,12 +28,12 @@ def answer_ethernet_query(question, mode):
             answer = disclaimer + answer
 
         # 🏷️ Add response label (once)
-        if "smart designer" in mode.lower():
-            answer = f"**Smart Designer Mode Response**\n\n{answer}"
-        elif "expert" in mode.lower():
-            answer = f"**Expert Context Mode Response**\n\n{answer}\n\n_Disclaimer: Interpretive response. Always verify with clause data._"
-        elif "strict" in mode.lower():
-            answer = f"**Strict Clause Lookup Mode Response**\n\n{answer}"
+        #if "smart designer" in mode.lower():
+        #    answer = f"**Smart Designer Mode Response**\n\n{answer}"
+        #elif "expert" in mode.lower():
+        #    answer = f"**Expert Context Mode Response**\n\n{answer}\n\n_Disclaimer: Interpretive response. Always verify with clause data._"
+        #elif "strict" in mode.lower():
+        #    answer = f"**Strict Clause Lookup Mode Response**\n\n{answer}"
 
         return answer, clauses
 
