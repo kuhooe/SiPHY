@@ -57,12 +57,6 @@ def get_openai_answer(query, context, mode, sources=None):
 
     content = response.choices[0].message.content.strip()
 
-    if mode == "Expert Context Mode" and sources:
-        clause_list = sorted(set(s.get("clause") or s.get("ref") for s in sources if s.get("clause") or s.get("ref")))
-        if clause_list:
-            content += "\n\n**Citations**\n"
-            content += "\n".join(f"- {c}" for c in clause_list)
-
     return content
 
 # 🧠 Embedding Generator
