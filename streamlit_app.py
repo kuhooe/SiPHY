@@ -102,12 +102,12 @@ with st.sidebar:
   o “Why are FEC errors spiking under 100G Ethernet load?”
 """)
 
-# Sample Questions Viewer
+# 📄 Sample Questions Viewer — With Markdown Formatting
     if os.path.exists("sample_questions.txt"):
         with open("sample_questions.txt", "r") as f:
             sample_qs_text = f.read()
         with st.expander("📄 View All Sample Questions"):
-            st.text_area("Sample Questions", value=sample_qs_text, height=300, disabled=False)
+            st.markdown(sample_qs_text, unsafe_allow_html=True)
         
 # Header
 st.image("siemens_logo.png", width=100)
