@@ -61,46 +61,46 @@ with st.sidebar:
             st.warning("No chat history to export.")
 
     with st.expander("ℹ️ About SiPHY"):
-            st.markdown("""
-    ****SiPHY** is a multi-mode protocol assistant trained on multiple IP Protocols (Ethernet, UCIE, PCIe...) specifications. It is powered by FAISS + OpenAI + custom clause metadata  
-    Use it to:
-    Today
-    - Clarify protocol behavior  
-    - Compare design tradeoffs (e.g., PAM4 vs NRZ)  
-    - Compare encoding schemes (e.g., 64b/66b vs 8b/10b)
-    Future
-    - Simulate edge cases or debug scenarios  
-    - Debug protocol interoperability  
-    - Validate clause coverage in chiplet designs
-    - Explore derivative design options
-    ---
+    st.markdown("""
+**SiPHY** is a multi-mode protocol assistant trained on multiple IP Protocols (Ethernet, UCIE, PCIe...) specifications. It is powered by FAISS + OpenAI + custom clause metadata.  
 
-    ### Potential Use Cases
+**Use it today to:** 
+- Clarify protocol behavior  
+- Compare design tradeoffs (e.g., PAM4 vs NRZ)  
+- Compare encoding schemes (e.g., 64b/66b vs 8b/10b)  
 
-    1. Protocol Coach Mode  
-    • Teaches engineers the functional behavior of protocols  
-    • Answers live questions like:  
-      o “What happens in the PCIe Gen5 equalization phase?”  
-      o “What’s the role of training sequences in 100G Ethernet?”  
-      o “Explain LTSSM state transitions with timing constraints.”
+**In the Future**  
+- Simulate edge cases or debug scenarios  
+- Debug protocol interoperability  
+- Validate clause coverage in chiplet designs  
+- Explore derivative design options  
 
-    **2. Use-Case Driven Guidance**  
-    • Offers protocol advice in the context of system goals:  
-      o “Which Ethernet mode (10GBASE-KR vs 10GBASE-R) is better for low-power backplane?”  
-      o “Can I use PCIe Gen4 over retimers for a latency-sensitive accelerator?”
+### Potential Use Cases
 
-    **3. IP Config Advisor**  
-    • Helps designers configure IPs with protocol options to meet PPA goals  
-    • Examples:  
-      o “Which lane bonding options are valid for PCIe Gen5 x16 in this floorplan?”  
-      o “Can I disable replay buffer if I don’t need retry in SRIOV mode?”
+**1. Protocol Coach Mode**  
+• Teaches engineers the functional behavior of protocols  
+• Answers live questions like:  
+  o “What happens in the PCIe Gen5 equalization phase?”  
+  o “What’s the role of training sequences in 100G Ethernet?”  
+  o “Explain LTSSM state transitions with timing constraints.”
 
-    **4. Protocol Debug Assistant**  
-    • Helps analyze protocol-level bugs from simulation/emulation/test logs  
-    • Examples:  
-      o “Why does my PCIe link get stuck in Recovery.RcvrCfg?”  
-      o “Why are FEC errors spiking under 100G Ethernet load?”
-    """)
+**2. Use-Case Driven Guidance**  
+• Offers protocol advice in the context of system goals:  
+  o “Which Ethernet mode (10GBASE-KR vs 10GBASE-R) is better for low-power backplane?”  
+  o “Can I use PCIe Gen4 over retimers for a latency-sensitive accelerator?”
+
+**3. IP Config Advisor**  
+• Helps designers configure IPs with protocol options to meet PPA goals  
+• Examples:  
+  o “Which lane bonding options are valid for PCIe Gen5 x16 in this floorplan?”  
+  o “Can I disable replay buffer if I don’t need retry in SRIOV mode?”
+
+**4. Protocol Debug Assistant**  
+• Helps analyze protocol-level bugs from simulation/emulation/test logs  
+• Examples:  
+  o “Why does my PCIe link get stuck in Recovery.RcvrCfg?”  
+  o “Why are FEC errors spiking under 100G Ethernet load?”
+""")
 
 # 📄 Sample Questions Viewer
     if os.path.exists("sample_questions.txt"):
