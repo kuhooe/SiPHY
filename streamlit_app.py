@@ -62,7 +62,7 @@ with st.sidebar:
             st.warning("No chat history to export.")
 
 with st.expander("ℹ️ About SiPHY"):
-	st.markdown("**Protocol design assistant using OpenAI + FAISS + clause metadata.**")
+    st.markdown("**Protocol design assistant using OpenAI + FAISS + clause metadata.**")
 
     if os.path.exists("sample_questions.txt"):
         with open("sample_questions.txt", "r") as f:
