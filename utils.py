@@ -79,21 +79,27 @@ def save_query_history(question, answer, clauses):
     })
 
 # 📜 PDF Exporter
+# 📜 PDF Exporter
+from fpdf import FPDF
+from datetime import datetime
+import os
+
 def generate_pdf(history):
     pdf = FPDF()
     pdf.set_auto_page_break(auto=True, margin=15)
     pdf.add_page()
-    pdf.set_font("Arial", size=12)
+    pdf.set_font("Arial", size=12)  # ✅ FIXED: removed inline comment error
 
-    for item in history:
-        pdf.multi_cell(0, 10, f"Q: {item['question']}", align="L")
-        pdf.multi_cell(0, 10, f"A: {item['answer']}", align="L")
-        if item.get("clauses"):
-            for clause in item["clauses"]:
-                pdf.multi_cell(0, 10, f"- Clause {clause['clause_number']}: {clause['title']}", align="L")
-        pdf.ln(5)
+    for i, (q, a) in enumerate(history):
+        pdf.multi_cell(0, 10, f"Q{i+1}: {q}")
+        pdf.ln(2)
+        pdf.multi_cell(0, 10, f"A{i+1}: {a}")
+        pdf.ln(8)
 
-    return pdf.output(dest="S").encode("latin1")
+    os.makedirs("exports", exist_ok=True)
+    filename = f"exports/chat_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.pdf"
+    pdf.output(filename)
+    return filename
 
 def export_chat_history_to_pdf(questions, answers):
     os.makedirs("exports", exist_ok=True)
