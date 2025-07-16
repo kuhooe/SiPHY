@@ -52,16 +52,16 @@ with st.sidebar:
         index=MODES.index(st.session_state.get("mode", "Smart Designer"))
     )
 
-   if st.button("Export Chat as PDF"):
-    if st.session_state["questions"]:
-        history = list(zip(st.session_state["questions"], st.session_state["answers"]))
-        filename = generate_pdf(history)
-        st.success("Chat history exported successfully.")
-        st.markdown(f"[📄 Download PDF]({filename})", unsafe_allow_html=True)
-    else:
-        st.warning("No chat history to export.")
+    if st.button("Export Chat as PDF"):
+      if st.session_state["questions"]:
+          history = list(zip(st.session_state["questions"], st.session_state["answers"]))
+          filename = generate_pdf(history)
+          st.success("Chat history exported successfully.")
+          st.markdown(f"[📄 Download PDF]({filename})", unsafe_allow_html=True)
+      else:
+          st.warning("No chat history to export.")
 
-    with st.expander("ℹ️ About SiPHY"):
+with st.expander("ℹ️ About SiPHY"):
         st.markdown("**Protocol design assistant using OpenAI + FAISS + clause metadata.**")
 
     if os.path.exists("sample_questions.txt"):
