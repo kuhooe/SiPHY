@@ -4,7 +4,7 @@
 | **Smart Designer Assistant** | PHY designers, integrators   | Balanced explanations + tradeoffs                                     | ✅                          | ⚠️ Simplifies detail for clarity          |
 | **Expert Context Mode** (🆕) | Advanced users, architects   | Deep technical analysis, real-world context, clause interdependencies | ❌ or intelligently grouped | ❌ No filtering, preserves full depth      |
 
-🔍 Additional Notes
+Additional Notes
 Feedback buttons were discussed, and the clause feedback logic exists in clause_feedback.py, but no 👍/👎 UI or capture logic exists in streamlit_app.py. This will require front-end work using st.button() per message.
 
 External sources in metadata are only shown as plain text when present — not rendered as hyperlinks. If you'd like, I can add logic to auto-convert http/https strings to <a> tags.
@@ -21,18 +21,18 @@ Expert Context: grouped clause summaries without sectioning
 Smart Designer Logic
 “Answers must include clause-level reasoning and citation hooks.
 
-🟢 What It Does (In Plain English)
+What It Does (In Plain English)
 A concise 1–2 sentence explanation of the clause’s purpose and effect.
 
 
-⚖️ Tradeoffs & Design Caveats
+Tradeoffs & Design Caveats
 When/why this feature may not be ideal:
 
 Latency vs. distance
 
 Power/complexity tradeoffs
 
-💡 Best Practices & Recommendations
+Best Practices & Recommendations
 Design advice based on use case:
 
 
