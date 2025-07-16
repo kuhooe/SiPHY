@@ -102,12 +102,12 @@ with st.expander("ℹ️ About SiPHY"):
   o “Why are FEC errors spiking under 100G Ethernet load?”
 """)
 
-# 📄 Sample Questions Viewer
-    if os.path.exists("sample_questions.txt"):
-        with open("sample_questions.txt", "r") as f:
-            sample_qs_text = f.read()
-        with st.expander("📄 View All Sample Questions"):
-            st.text_area("Sample Questions", value=sample_qs_text, height=300, disabled=False)
+# Sample Questions Viewer
+if os.path.exists("sample_questions.txt"):
+    with open("sample_questions.txt", "r") as f:
+        sample_qs_text = f.read()
+    with st.expander("📄 View All Sample Questions"):
+        st.text_area("Sample Questions", value=sample_qs_text, height=300, disabled=False)
         
 # Header
 st.image("siemens_logo.png", width=100)
