@@ -1,10 +1,17 @@
 **You can try asking SiPHY any Ethernet protocol related questions. Here are some ideas:**
 
-**What’s the role of training sequences in 100G Ethernet?**  
-**Explain LTSSM state transitions with timing constraints.**  
-**Which Ethernet mode (10GBASE-KR vs 10GBASE-R) is better for low-power backplane?**  
-**Can I use PCIe Gen4 over retimers for a latency-sensitive accelerator?**  
-**Which lane bonding options are valid for PCIe Gen5 x16 in this floorplan?**  
-**Can I disable replay buffer if I don’t need retry in SRIOV mode?**  
-**Why does my PCIe link get stuck in Recovery.RcvrCfg?**  
-**Why are FEC errors spiking under 100G Ethernet load?**
+What’s the role of training sequences in 100G Ethernet?
+
+Explain LTSSM state transitions with timing constraints. 
+
+Which Ethernet mode (10GBASE-KR vs 10GBASE-R) is better for low-power backplane?  
+
+Can I use PCIe Gen4 over retimers for a latency-sensitive accelerator?  
+
+Which lane bonding options are valid for PCIe Gen5 x16 in this floorplan?
+
+Can I disable replay buffer if I don’t need retry in SRIOV mode?  
+
+Why does my PCIe link get stuck in Recovery.RcvrCfg?  
+
+Why are FEC errors spiking under 100G Ethernet load?
