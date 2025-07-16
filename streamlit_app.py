@@ -10,7 +10,7 @@ from utils import (
     init_session_state,
     format_clause_context,
     parse_sectioned_response,
-    generatte_pdf,
+    generate_pdf,
     save_query_history,
     generate_pdf,
 )
