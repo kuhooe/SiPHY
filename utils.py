@@ -79,24 +79,7 @@ def save_query_history(question, answer, clauses):
     })
 
 # 📜 PDF Exporter
-def generate_pdf(history):
-    pdf = FPDF()
-    pdf.set_auto_page_break(auto=True, margin=15)
-    pdf.add_page()
-    pdf.set_font("Arial", size=12)  # ✅ FIXED: removed inline comment error
-
-    for i, (q, a) in enumerate(history):
-        pdf.multi_cell(0, 10, f"Q{i+1}: {q}")
-        pdf.ln(2)
-        pdf.multi_cell(0, 10, f"A{i+1}: {a}")
-        pdf.ln(8)
-
-    os.makedirs("exports", exist_ok=True)
-    filename = f"exports/chat_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.pdf"
-    pdf.output(filename)
-return filename
-
-def export_chat_history_to_pdf(questions, answers):
+def generate_pdf(questions, answers):
     os.makedirs("exports", exist_ok=True)
     pdf = FPDF()
     pdf.add_page()
