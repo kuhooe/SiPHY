@@ -3,7 +3,7 @@
 import streamlit as st
 from constants import MODES
 from clause_feedback import save_query_history
-from Answer_Ethernet_Query import answer_ethernet_query
+from ethernet_bot import answer_ethernet_query
 from utils import parse_sectioned_response
 
 # Initialize session state
