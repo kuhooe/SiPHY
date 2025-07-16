@@ -61,7 +61,7 @@ with st.sidebar:
             st.warning("No chat history to export.")
 
 with st.expander("ℹ️ About SiPHY"):
-st.markdown("""
+    st.markdown("""
 **SiPHY** is a multi-mode protocol assistant trained on multiple IP Protocols (Ethernet, UCIE, PCIe...) specifications. It is powered by FAISS + OpenAI + custom clause metadata.  
 
 **Use it today to:** 
